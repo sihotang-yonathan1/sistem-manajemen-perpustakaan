@@ -8,17 +8,19 @@ datasource db {
 }
 
 model account {
-  id       Int       @unique(map: "id") @default(autoincrement())
-  username String    @id @db.VarChar(255)
-  password String    @db.VarChar(255)
-  role     String?   @default("user") @db.VarChar(50)
-  session  session[]
+  id        Int         @unique(map: "id") @default(autoincrement())
+  username  String      @id @db.VarChar(255)
+  password  String      @db.VarChar(255)
+  role      String?     @default("user") @db.VarChar(50)
+  session   session[]
+  user_book user_book[]
 }
 
 model book {
-  id          Int     @id @default(autoincrement())
-  title       String? @db.Text
-  description String? @db.Text
+  id          Int         @id @default(autoincrement())
+  title       String?     @db.Text
+  description String?     @db.Text
+  user_book   user_book[]
 }
 
 model session {
@@ -28,4 +30,14 @@ model session {
   account    account? @relation(fields: [username], references: [username], onDelete: Restrict, onUpdate: Restrict, map: "session_ibfk_1")
 
   @@index([username], map: "username")
+}
+
+model user_book {
+  account_id Int
+  book_id    Int
+  account    account @relation(fields: [account_id], references: [id], onUpdate: Restrict, map: "user_book_ibfk_1")
+  book       book    @relation(fields: [book_id], references: [id], onUpdate: Restrict, map: "user_book_ibfk_2")
+
+  @@id([account_id, book_id])
+  @@index([book_id], map: "book_id")
 }
