@@ -11,15 +11,17 @@ export default function LoginPage(){
                         name="username" 
                         id="username" 
                         placeholder="username"
-                        className="m-2 p-1"
+                        className="m-2 py-1 px-2"
                     />
 
-                    <input
-                        type="password"
-                        name="password"
-                        placeholder="password"
-                        className="m-2 p-1"
-                    />
+                    <div>
+                        <input
+                            type="password"
+                            name="password"
+                            placeholder="password"
+                            className="m-2 py-1 px-2"
+                        />
+                    </div>
                 </div>
                 <div className="m-1 flex justify-center">
                     <button className="bg-sky-400 p-1 font-semibold">Login</button>
