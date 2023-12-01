@@ -14,6 +14,20 @@ export async function getAccountInfoByUsername(username: string){
     return data
 }
 
+export async function getAccountInfo(user_id: number){
+    let data = await prisma.account.findUnique({
+        select: {
+            id: true,
+            username: true,
+            role: true
+        },
+        where: {
+            id: user_id 
+        }
+    })
+    return data
+}
+
 export  async function AddAccount(username: string, password: string, role: string = 'user'){
     const userList = await getAccountInfoByUsername(username)
     if (userList.filter(value => value.username === username).length > 0){
