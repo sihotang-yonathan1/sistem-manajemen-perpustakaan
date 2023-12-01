@@ -1,5 +1,21 @@
 import { NextRequest, NextResponse } from "next/server";
-import { AddAccount, deleteAccountByUsername, updateAccount } from "./account";
+import { AddAccount, deleteAccountByUsername, getAccountInfoByUsername, updateAccount } from "./account";
+
+export async function GET(request: NextRequest){
+    const url_query = request.nextUrl.searchParams
+    const username = url_query.get('username')
+    if (username !== null){
+        let data = await getAccountInfoByUsername(username)
+        return new NextResponse(JSON.stringify(data))
+    }
+    else {
+        return new NextResponse(JSON.stringify({
+            'message': 'Can\'t query the specified data'
+        }), {
+            status: 400
+        })
+    }
+}
 
 export async function POST(request: NextRequest){
     let request_json = await request.json()
