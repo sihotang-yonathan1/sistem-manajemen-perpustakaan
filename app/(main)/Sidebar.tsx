@@ -1,9 +1,13 @@
 import Link from "next/link"
 
+
 const sidebar_menu = [
     {
-        'name': 'dashboard',
-        'url_path': '/dashboard'
+        name: 'dashboard',
+        url_path: '/dashboard'
+    }, {
+        name: 'My book',
+        url_path: '/book'
     }
 ]
 
