@@ -1,4 +1,6 @@
 import Link from "next/link"
+import { getSession } from "../api/v1/session/session"
+import { cookies } from "next/headers"
 
 
 const sidebar_menu = [
@@ -11,11 +13,13 @@ const sidebar_menu = [
     }
 ]
 
-export default function Sidebar(){
+export default async function Sidebar({sessionId}: {sessionId: number}){
+    const sessionData = await getSession(sessionId)
     return (
         <div className=" flex flex-col p-3 bg-slate-500 h-screen relative">
-            <div className="flex justify-center mb-2">
+            <div className="flex justify-center mb-2 flex-col items-center">
                 <p className="text-white">Welcome</p>
+                <p className="text-white uppercase">{sessionData?.username}</p>
             </div>
             {sidebar_menu.map((value) => (
                 <Link href={value.url_path} key={value.url_path} className="bg-white mb-2 p-1">
