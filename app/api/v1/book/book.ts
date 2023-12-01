@@ -66,3 +66,14 @@ export async function getBookInfo(book_id: number){
     })
     return data
 }
+
+export async function getAllBook(){
+    let data = await prisma.book.findMany({
+        select: {
+            id: true,
+            title: true,
+            description: true
+        }
+    })
+    return data
+}
