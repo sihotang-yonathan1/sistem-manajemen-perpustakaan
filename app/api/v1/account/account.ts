@@ -31,3 +31,24 @@ export  async function AddAccount(username: string, password: string, role: stri
     }
     
 }
+
+export async function deletAccountByUsername(username: string){
+    const userList = await getAccountInfoByUsername(username)
+    let response;
+    if (userList.filter(
+        value => value.username === username)
+        .length !== 0){
+        await prisma.$executeRaw`
+            DELETE FROM account WHERE username = ${username}
+        `
+        response = {
+            'message': 'Account successfully deleted'
+        }
+    }
+    else {
+        response = {
+            'message': 'Account failed to delete'
+        }
+    }
+    return response
+}
