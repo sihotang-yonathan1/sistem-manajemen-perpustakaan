@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getUserBooks } from "./user_book";
+import { deleteUserBook, getUserBooks } from "./user_book";
 
 export async function GET(request: NextRequest){
     const url_query = request.nextUrl.searchParams
@@ -13,4 +13,13 @@ export async function GET(request: NextRequest){
     }), {
         status: 400
     })
+}
+
+export async function DELETE(request: NextRequest){
+    const request_json = await request.json()
+    await deleteUserBook(request_json['book_id'], request_json['user_id'])
+    return NextResponse.json({
+        'message': 'Book successfully deleted'
+    })
+    
 }
