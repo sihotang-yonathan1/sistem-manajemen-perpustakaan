@@ -1,5 +1,4 @@
 import { cookies } from "next/headers";
-import { deleteSession } from "../api/v1/session/session";
 import { redirect } from "next/navigation";
 
 export default async function LogoutPage(){
