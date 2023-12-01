@@ -32,7 +32,7 @@ export  async function AddAccount(username: string, password: string, role: stri
     
 }
 
-export async function deletAccountByUsername(username: string){
+export async function deleteAccountByUsername(username: string){
     const userList = await getAccountInfoByUsername(username)
     let response;
     if (userList.filter(
@@ -48,6 +48,29 @@ export async function deletAccountByUsername(username: string){
     else {
         response = {
             'message': 'Account failed to delete'
+        }
+    }
+    return response
+}
+
+// only for uodate password and role
+export async function updateAccount(username: string, password: string, role: string){
+    const accounts = await getAccountInfoByUsername(username)
+    
+    let response;
+    if (accounts.filter(value => value.username).length !== 0){
+        await prisma.$executeRaw`
+            UPDATE account
+            SET password = ${password}, role = ${role}
+            WHERE username = ${username}
+        `
+        response = {
+            'message': 'Account successfully updated'
+        }
+    }
+    else {
+        response = {
+            'message': 'Account failed to update the data'
         }
     }
     return response

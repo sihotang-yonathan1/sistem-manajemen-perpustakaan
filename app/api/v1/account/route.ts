@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { AddAccount, deleteAccountByUsername } from "./account";
+import { AddAccount, deleteAccountByUsername, updateAccount } from "./account";
 
 export async function POST(request: NextRequest){
     let request_json = await request.json()
@@ -11,5 +11,14 @@ export async function DELETE(request: NextRequest){
     let request_json = await request.json()
     // TODO: implement authorization using API-KEY
     let response = await deleteAccountByUsername(request_json['username'])
+    return new NextResponse(JSON.stringify(response))
+}
+
+export async function PATCH(request: NextRequest){
+    let request_json = await request.json()
+    // TODO: implement authorization using API-KEY
+    let response = await updateAccount(
+        request_json['username'], request_json['password'], 
+        request_json['role'])
     return new NextResponse(JSON.stringify(response))
 }
