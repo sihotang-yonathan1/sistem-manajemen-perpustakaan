@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { loginAccount } from "./auth";
-import { getSession, setSession } from "../session/session";
+import { deleteSession, getSession, setSession } from "../session/session";
 import { cookies } from "next/headers";
 
 export async function POST(request: NextRequest){
@@ -30,4 +30,15 @@ export async function POST(request: NextRequest){
         'data': response,
         'message': 'User successfully logged in'
     }))
+}
+
+export async function DELETE(request: NextRequest){
+    let request_json = await request.json()
+    // delete from header
+    cookies().delete('X-SESSION-ID')
+
+    // delete from database
+    let data = await deleteSession(request_json['session_id'])
+    
+    return new NextResponse(JSON.stringify(data))
 }

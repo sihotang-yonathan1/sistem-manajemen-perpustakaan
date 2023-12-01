@@ -49,3 +49,14 @@ export async function setSession(username: string){
         'message': 'Session has been created'
     }
 }
+
+export async function deleteSession(session_id: number){
+    await prisma.session.delete({
+        where: {
+            id: session_id
+        }
+    })
+    return {
+        'message': 'Session successfully deleted'
+    }
+}
