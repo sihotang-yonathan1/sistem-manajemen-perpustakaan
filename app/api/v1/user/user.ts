@@ -22,9 +22,9 @@ export  async function AddAccount(username: string, password: string, role: stri
         }
     } else {
         await prisma.$executeRaw`
-        INSERT INTO account (username, password, role)
-        VALUES (${username}, ${password}, ${role})
-    `
+            INSERT INTO account (username, password, role)
+            VALUES (${username}, ${password}, ${role})
+        `
         return {
             'message': 'User successfully added'
         }
