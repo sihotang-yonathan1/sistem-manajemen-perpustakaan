@@ -7,15 +7,15 @@ export async function POST(request: NextRequest){
     let request_json = await request.json()
     const username = request_json['username']
 
-    // check if session id already set
-    if (cookies().get('X-SESSION-ID') !== null){
-        let session_data = await getSession(Number(cookies().get('X-SESSION-ID')?.value || 0))
-        if (session_data !== null){
-            return NextResponse.json({
-                'message': 'User already login'
-            })
-        }
-    }
+    // // check if session id already set
+    // if (cookies().get('X-SESSION-ID') !== null){
+    //     let session_data = await getSession(Number(cookies().get('X-SESSION-ID')?.value || 0))
+    //     if (session_data !== null){
+    //         return NextResponse.json({
+    //             'message': 'User already login'
+    //         })
+    //     }
+    // }
     let response = await loginAccount(username, request_json['password'])
     if (response !== null){
         let session_response = await setSession(username)
