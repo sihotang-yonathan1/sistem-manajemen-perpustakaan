@@ -18,9 +18,9 @@ export default function Sidebar(){
                     <button className="capitalize">{value.name}</button>
                 </Link>
             ))}
-            <div className="flex bg-orange-400 mt-auto justify-center"> 
+            <Link href="/logout" className="flex bg-orange-400 mt-auto justify-center"> 
                 <button className="px-2 py-2" >Logout</button>
-            </div>
+            </Link>
         </div>
     )
 }
