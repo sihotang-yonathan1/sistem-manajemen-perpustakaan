@@ -37,3 +37,18 @@ export async function deleteBook(book_id: number){
         }
     }
 }
+
+export async function updateBook(book_id: number, title: string, description: string | null){
+    await prisma.book.update({
+        data: {
+            title: title,
+            description: description
+        },
+        where: {
+            id: book_id
+        }
+    })
+    return {
+        'message': 'Book successfully updated'
+    }
+}
