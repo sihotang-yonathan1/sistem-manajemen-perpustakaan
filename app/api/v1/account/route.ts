@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { AddAccount } from "./user";
+import { AddAccount } from "./account";
 
 export async function POST(request: NextRequest){
     let request_json = await request.json()
