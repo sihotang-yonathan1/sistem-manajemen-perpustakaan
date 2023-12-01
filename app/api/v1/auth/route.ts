@@ -28,8 +28,10 @@ export async function POST(request: NextRequest){
     }
     return new NextResponse(JSON.stringify({
         'data': response,
-        'message': 'User successfully logged in'
-    }))
+        'message': 'User failed to login'
+    }), {
+        status: 401
+    })
 }
 
 export async function DELETE(request: NextRequest){

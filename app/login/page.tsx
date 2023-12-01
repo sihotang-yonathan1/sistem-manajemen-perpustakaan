@@ -33,8 +33,8 @@ export default function LoginPage(){
             })
             if (response.ok){
                 console.log(await response.json())
+                router.replace('/dashboard')
             }
-            router.replace('/dashboard')
         }
         loginFunction()
     }
