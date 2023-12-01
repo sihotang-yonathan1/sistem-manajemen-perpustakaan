@@ -13,3 +13,9 @@ model account {
   password String  @db.VarChar(255)
   role     String? @default("user") @db.VarChar(50)
 }
+
+model book {
+  id          Int     @id @default(autoincrement())
+  title       String? @db.Text
+  description String? @db.Text
+}
