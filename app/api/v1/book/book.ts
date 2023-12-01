@@ -52,3 +52,17 @@ export async function updateBook(book_id: number, title: string, description: st
         'message': 'Book successfully updated'
     }
 }
+
+export async function getBookInfo(book_id: number){
+    let data = await prisma.book.findFirst({
+        select: {
+            id: true,
+            title: true,
+            description: true
+        },
+        where: {
+            id: book_id
+        }
+    })
+    return data
+}
