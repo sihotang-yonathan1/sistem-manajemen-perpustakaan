@@ -33,6 +33,7 @@ type PinjamanBukuUsername = {
 export default async function UserBookPage(){
     const sessionId = cookies().get('X-SESSION-ID')?.value
     const sessionData = await getSession(Number(sessionId))
+    
     let result: [] | PinjamanBukuUsername[] = []
     if (sessionData !== null || sessionData !== undefined){
         let buku_dipinjam = await getPinjamanBukuByUsername(sessionData?.username ?? '')

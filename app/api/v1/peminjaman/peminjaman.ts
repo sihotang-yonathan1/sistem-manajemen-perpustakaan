@@ -58,7 +58,7 @@ export async function updateTanggalPengembalianPinjamanBuku(pinjaman_id: number,
 type PinjamanBukuUsername = {
     id: number,
     book_id: number,
-    book_title: string,
+    title: string,
     description?: string,
     username: string,
     tanggal_pinjam: Date
@@ -75,7 +75,8 @@ export async function getPinjamanBukuByUsername(username: string){
             peminjaman.tanggal_pinjam 
         FROM peminjaman 
             INNER JOIN book ON book.id = peminjaman.book_id 
-            INNER JOIN account ON account.id = peminjaman.account_id;
+            INNER JOIN account ON account.id = peminjaman.account_id
+        WHERE account.username = ${username}
     `
     return data ?? []
 }
