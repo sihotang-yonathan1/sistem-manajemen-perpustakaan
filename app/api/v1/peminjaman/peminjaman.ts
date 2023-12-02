@@ -40,3 +40,17 @@ export async function deletePinjamanBuku(pinjaman_id: number){
         'message': 'Buku berhasil dihapus dari daftar pinjaman'
     }
 }
+
+export async function updateTanggalPengembalianPinjamanBuku(pinjaman_id: number, tanggal_pengembalian: Date){
+    await prisma.peminjaman.update({
+        where: {
+            id: pinjaman_id
+        },
+        data: {
+            tanggal_pengembalian: tanggal_pengembalian
+        }
+    })
+    return {
+        'message': 'tanggal pengembalian berhasil diupdate'
+    }
+}
