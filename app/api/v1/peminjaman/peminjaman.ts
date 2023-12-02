@@ -54,3 +54,28 @@ export async function updateTanggalPengembalianPinjamanBuku(pinjaman_id: number,
         'message': 'tanggal pengembalian berhasil diupdate'
     }
 }
+
+type PinjamanBukuUsername = {
+    id: number,
+    book_id: number,
+    book_title: string,
+    description?: string,
+    username: string,
+    tanggal_pinjam: Date
+}
+
+export async function getPinjamanBukuByUsername(username: string){
+    let data: PinjamanBukuUsername[] = await prisma.$queryRaw`
+        SELECT 
+            peminjaman.id, 
+            peminjaman.book_id, 
+            book.title, 
+            book.description, 
+            account.username, 
+            peminjaman.tanggal_pinjam 
+        FROM peminjaman 
+            INNER JOIN book ON book.id = peminjaman.book_id 
+            INNER JOIN account ON account.id = peminjaman.account_id;
+    `
+    return data ?? []
+}
