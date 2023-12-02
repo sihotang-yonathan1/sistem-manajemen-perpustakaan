@@ -6,20 +6,9 @@ import BookPreview from "../dashboard/component/BookPreview";
 import React from "react"
 import { getPinjamanBukuByUsername } from "@/app/api/v1/peminjaman/peminjaman";
 import BookItem from "../dashboard/component/BookItem";
+import BookSection from "../dashboard/component/BookSection";
 
 
-export function BookSection({title, children}: {title: string, children: React.ReactNode}){
-    return (
-        <div className="bg-slate-200">
-            <div className="p-2">
-                <p className="font-semibold">{title}</p>
-            </div>
-            <div className="overflow-x-auto flex">
-                {children}
-            </div>
-        </div>
-    )
-}
 
 type PinjamanBukuUsername = {
     id: number,
@@ -29,7 +18,6 @@ type PinjamanBukuUsername = {
     username: string,
     tanggal_pinjam: Date
 }
-
 
 export default async function UserBookPage(){
     const sessionId = cookies().get('X-SESSION-ID')?.value
