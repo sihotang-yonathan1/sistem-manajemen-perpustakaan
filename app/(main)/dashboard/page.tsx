@@ -15,7 +15,7 @@ export default async function DashboardPage(){
             <div className="flex overflow-x-auto">
                 {allBooks.map((value, index)=> (
                     <div key={index}>
-                        <BookPreview title={value.title ?? ""} description={value.description}/>
+                        <BookPreview title={value.title ?? ""} description={value.description} bookId={value.id}/>
                     </div>
                 ))}
             </div>

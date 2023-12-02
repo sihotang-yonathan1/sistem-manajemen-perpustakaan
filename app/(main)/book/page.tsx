@@ -50,7 +50,7 @@ export default async function UserBookPage(){
                     {
                         result.map((value, index) => (
                             <div key={index}>
-                                <BookPreview title={value.title} description={value.description}/>
+                                <BookPreview title={value.title} description={value.description} bookId={value.book_id}/>
                             </div>
                         ))
                     }

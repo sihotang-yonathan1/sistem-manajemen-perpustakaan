@@ -1,15 +1,16 @@
-export default function BookPreview({title, description}: {title: string, description?: string | null}){
+import Link from "next/link";
+
+export default function BookPreview({title, description, bookId}: {title: string, description?: string | null, bookId: number}){
     return (
-        <div className="bg-sky-300 m-2 p-2">
-            <div className="flex justify-center">
-                <h3 className="font-semibold">{title}</h3>
+        <Link href="#">
+            <div className="bg-sky-300 m-2 p-2">
+                <div className="flex justify-center">
+                    <h3 className="font-semibold">{title}</h3>
+                </div>
+                <div>
+                    <p className="text-sm">{description}</p>
+                </div>
             </div>
-            <div>
-                <p className="text-sm">{description}</p>
-            </div>
-            <div className="flex justify-center my-1">
-                <button className="bg-orange-500 text-white p-1">Read</button>
-            </div>
-        </div>
+        </Link>
     )
 }
