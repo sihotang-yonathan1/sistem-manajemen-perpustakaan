@@ -5,6 +5,7 @@ import { cookies } from "next/headers"
 import BookPreview from "../dashboard/component/BookPreview";
 import React from "react"
 import { getPinjamanBukuByUsername } from "@/app/api/v1/peminjaman/peminjaman";
+import BookItem from "../dashboard/component/BookItem";
 
 
 export function BookSection({title, children}: {title: string, children: React.ReactNode}){
@@ -49,8 +50,13 @@ export default async function UserBookPage(){
                 <BookSection title="Buku dipinjam">
                     {
                         result.map((value, index) => (
-                            <div key={index}>
-                                <BookPreview title={value.title} description={value.description} bookId={value.book_id}/>
+                            <div key={index} className="bg-sky-200 my-2 mx-2">
+                                <BookItem
+                                    title={value.title}
+                                    description={value.description}
+                                    book_id={value.book_id}
+                                    peminjaman_id={value.id}
+                                />
                             </div>
                         ))
                     }
