@@ -4,6 +4,7 @@ import { getUserBooks } from "@/app/api/v1/user_book/user_book"
 import { cookies } from "next/headers"
 import BookPreview from "../dashboard/component/BookPreview";
 import React from "react"
+import { getPinjamanBukuByUsername } from "@/app/api/v1/peminjaman/peminjaman";
 
 
 export function BookSection({title, children}: {title: string, children: React.ReactNode}){
@@ -19,10 +20,24 @@ export function BookSection({title, children}: {title: string, children: React.R
     )
 }
 
+type PinjamanBukuUsername = {
+    id: number,
+    book_id: number,
+    title: string,
+    description?: string,
+    username: string,
+    tanggal_pinjam: Date
+}
+
 
 export default async function UserBookPage(){
     const sessionId = cookies().get('X-SESSION-ID')?.value
     const sessionData = await getSession(Number(sessionId))
+    let result: [] | PinjamanBukuUsername[] = []
+    if (sessionData !== null || sessionData !== undefined){
+        let buku_dipinjam = await getPinjamanBukuByUsername(sessionData?.username ?? '')
+        result = buku_dipinjam;
+    }
     
     return (
         <>
@@ -31,8 +46,13 @@ export default async function UserBookPage(){
             </div>
             <div className="m-2 p-1">
                 <BookSection title="Buku dipinjam">
-                    <BookPreview title="Buku 1" description="Hello world"/>
-                    <BookPreview title="Buku 2" description="Hello world 2"/>
+                    {
+                        result.map((value, index) => (
+                            <div key={index}>
+                                <BookPreview title={value.title} description={value.description}/>
+                            </div>
+                        ))
+                    }
                 </BookSection>
             </div>
         </>

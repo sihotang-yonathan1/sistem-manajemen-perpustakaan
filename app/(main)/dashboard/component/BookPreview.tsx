@@ -1,7 +1,7 @@
 export default function BookPreview({title, description}: {title: string, description?: string | null}){
     return (
         <div className="bg-sky-300 m-2 p-2">
-            <div>
+            <div className="flex justify-center">
                 <h3 className="font-semibold">{title}</h3>
             </div>
             <div>
