@@ -45,14 +45,24 @@ model user_book {
 }
 
 model peminjaman {
-  id                   Int       @id @default(autoincrement())
-  tanggal_pinjam       DateTime? @default(dbgenerated("(curdate())")) @db.Date
-  tanggal_pengembalian DateTime? @default(dbgenerated("(curdate() + interval 14 day)")) @db.Date
+  id                   Int            @id @default(autoincrement())
+  tanggal_pinjam       DateTime?      @default(dbgenerated("(curdate())")) @db.Date
+  tanggal_pengembalian DateTime?      @default(dbgenerated("(curdate() + interval 14 day)")) @db.Date
   book_id              Int
   account_id           Int
-  book                 book      @relation(fields: [book_id], references: [id], onUpdate: Restrict, map: "peminjaman_ibfk_1")
-  account              account   @relation(fields: [account_id], references: [id], onUpdate: Restrict, map: "peminjaman_ibfk_2")
+  book                 book           @relation(fields: [book_id], references: [id], onUpdate: Restrict, map: "peminjaman_ibfk_1")
+  account              account        @relation(fields: [account_id], references: [id], onUpdate: Restrict, map: "peminjaman_ibfk_2")
+  pengembalian         pengembalian[]
 
   @@index([account_id], map: "account_id")
   @@index([book_id], map: "book_id")
+}
+
+model pengembalian {
+  id                   Int        @id @default(autoincrement())
+  pinjaman_id          Int
+  tanggal_pengembalian DateTime   @db.Date
+  peminjaman           peminjaman @relation(fields: [pinjaman_id], references: [id], onUpdate: Restrict, map: "pengembalian_ibfk_1")
+
+  @@index([pinjaman_id], map: "pinjaman_id")
 }
