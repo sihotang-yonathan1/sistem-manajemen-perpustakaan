@@ -2,7 +2,7 @@ import { randomInt } from "crypto";
 import prisma from "../../../utils/db_config";
 
 export async function getSession(session_id: number) {
-    let data = await prisma.session.findFirst({
+    let data = await prisma.session.findUnique({
         select: {
             id: true,
             created_at: true,
