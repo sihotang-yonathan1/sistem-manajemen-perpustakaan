@@ -29,3 +29,14 @@ export async function addPinjamanBuku(tanggal_pinjam: Date, tanggal_pengembalian
         'message': 'Buku sukses dipinjam'
     }
 }
+
+export async function deletePinjamanBuku(pinjaman_id: number){
+    await prisma.peminjaman.delete({
+        where: {
+            id: pinjaman_id
+        }
+    })
+    return {
+        'message': 'Buku berhasil dihapus dari daftar pinjaman'
+    }
+}

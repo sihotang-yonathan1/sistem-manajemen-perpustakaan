@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { addPinjamanBuku, getPinjamanBuku } from "../peminjaman/peminjaman";
+import { addPinjamanBuku, deletePinjamanBuku, getPinjamanBuku } from "../peminjaman/peminjaman";
 
 export async function GET(request: NextRequest){
     const url_query = request.nextUrl.searchParams
@@ -24,4 +24,10 @@ export async function POST(request: NextRequest){
         response_json?.tanggal_pinjam ?? new Date().toISOString(), response_json['tanggal_pengembalian'], 
         response_json['book_id'], response_json['user_id'])
     return new NextResponse(JSON.stringify(response))
+}
+
+export async function DELETE(request: NextRequest){
+    let response_json = await request.json()
+    let data = await deletePinjamanBuku(response_json['pinjaman_id'])
+    return new NextResponse(JSON.stringify(data))
 }
