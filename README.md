@@ -12,9 +12,13 @@ Aplikasi ini dibuat dengan beberapa tech stack seperti:
 Untuk dapat menggunakan aplikasi ini ada beberapa tahap yang perlu dilakukan
 
 ### 1. Download atau clone repository ini  
-Jika anda menggunakan git, anda dapat mengetikkan perintah ini
+Jika anda menggunakan git, anda dapat mengetikkan perintah ini pada terminal atau command prompt
 ```shell
-git clone <>
+# clone dari server
+git clone "https://github.com/sihotang-yonathan1/sistem-manajemen-perpustakaan.git"
+
+# pindah ke direktori program
+cd sistem-manajemen-perpustakaan
 ```
 ### 2. Install dependency yang dibutuhkan
 ```shell
