@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Sistem Informasi Perpustakaan
+> Aplikasi ini masih belum stabil dan masih belum memiliki beberapa fitur
 
-## Getting Started
+Aplikasi ini merupakan aplikasi manajemen perpustakaan yang dapat digunakan untuk mengelola buku-buku yang ada.
 
-First, run the development server:
+Aplikasi ini dibuat dengan beberapa tech stack seperti:
+- Nextjs
+- TailwindCSS
+- Prisma
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Instalasi
+Untuk dapat menggunakan aplikasi ini ada beberapa tahap yang perlu dilakukan
+
+### 1. Download atau clone repository ini  
+Jika anda menggunakan git, anda dapat mengetikkan perintah ini
+```shell
+git clone <>
+```
+### 2. Install dependency yang dibutuhkan
+```shell
+npm install
+```
+### 3. Nyalakan database dan configurasi di file `.env`  
+Template configurasinya sebagai berikut
+```ini
+DATABASE_URL="db_type://username:password@host:post/db_name"
+``` 
+Jadi, jika anda memiliki username `joko` dengan password `mypassword` dan database `mydb` dengan port 3306, anda dapat membuatnya seperti ini (dengan asumsi pengguna tersebut menggunakan `mysql`):
+```ini
+DATABASE_URL="mysql://joko:mypassword@localhost:3306/mydb"
+``` 
+Bagian password dapat dihilangkan jika tidak memiliki password
+```ini
+# jika tidak memiliki password
+DATABASE_URL="mysql://joko@localhost:3306/mydb"
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Setelah menyalakan dan mengoneksikan database, pastikan anda telah membuat tabel-tabel yang dibutuhkan. Jika ingin lebih mudah, anda dapat memakai schema prisma untuk memasukkan tabel.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+npx prisma db push
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### 4. Nyalakan web server
+Nyalakan web servernya dengan cara mengetikkan
+```shell
+npx next dev
+# atau dapat menggunakan command dibawah
+npm run dev
+```
 
-## Learn More
+### 5. Buka browser dengan alamat konfigurasi web server
+Secara default, aplikasi ini berjalan pada `http://localhost:3000`. Anda dapat mengetikkan url ini di browser untuk mengakses aplikasi
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Tentang Pengembang
+Aplikasi ini dibuat oleh Kelompok 3 dalam MK Sistem Informasi
