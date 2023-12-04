@@ -16,7 +16,7 @@ export default async function DashboardPage(){
                 <input 
                     type="text" 
                     name="search_input" 
-                    className="border rounded p-2"
+                    className="border rounded px-2 mx-2 py-1"
                     id="search_input" 
                     placeholder="Search book here"/>
                 <button 
