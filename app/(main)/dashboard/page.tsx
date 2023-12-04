@@ -8,9 +8,20 @@ export default async function DashboardPage(){
     const allBooks = await getAllBook() ?? []
     
     return (
-        <div>
+        <div className="flex flex-col">
             <div className="flex bg-slate-400 justify-center p-2">
                 <p className="font-bold">Dashboard</p>
+            </div>
+            <div className="flex justify-center m-1">
+                <input 
+                    type="text" 
+                    name="search_input" 
+                    className="border rounded p-2"
+                    id="search_input" 
+                    placeholder="Search book here"/>
+                <button 
+                    className="flex flex-col px-1 justify-center bg-sky-400"
+                    >Ok</button>
             </div>
             <div className="flex overflow-x-auto">
                 {allBooks.map((value, index)=> (
