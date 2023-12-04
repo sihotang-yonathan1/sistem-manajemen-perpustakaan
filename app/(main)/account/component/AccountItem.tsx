@@ -2,7 +2,7 @@
 
 export function AccountPreviewContainer({role, children}: {role: string, children: React.ReactNode}){
     return (
-        <div className="relative flex-1 flex">
+        <div className="relative flex-1 flex hover:scale-[1.02]">
             {role === 'admin' 
             ? 
                 <div className="bg-green-200 px-2 py-3 flex-grow">
