@@ -14,6 +14,17 @@ export async function getAccountInfoByUsername(username: string){
     return data
 }
 
+export async function getAllAccountInfo(){
+    let data = await prisma.account.findMany({
+        select: {
+            id: true,
+            username: true,
+            role: true,
+        }
+    })
+    return data ?? []
+}
+
 export async function getAccountInfo(user_id: number){
     let data = await prisma.account.findUnique({
         select: {
