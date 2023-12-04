@@ -21,6 +21,7 @@ git clone "https://github.com/sihotang-yonathan1/sistem-manajemen-perpustakaan.g
 cd sistem-manajemen-perpustakaan
 ```
 ### 2. Install dependency yang dibutuhkan
+Pastikan anda sudah menginstal nodejs
 ```shell
 npm install
 ```
