@@ -10,6 +10,9 @@ const sidebar_menu = [
     }, {
         name: 'My book',
         url_path: '/book'
+    }, {
+        name: 'Account',
+        url_path: '/account'
     }
 ]
 
