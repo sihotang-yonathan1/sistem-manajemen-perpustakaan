@@ -2,7 +2,16 @@
 
 import { useState } from "react"
 
-export default function AccountPreviewItem({username, role}: {username: string, role: string}){
+type HandleDeleteType = (username: string) => void
+type UpdateFunctionType = (updateAccount: {username: string, role: string}) => void
+
+export default function AccountPreviewItem({username, role, updateFunction, handleDelete}: 
+    {
+        username: string, 
+        role: string, 
+        updateFunction: UpdateFunctionType,
+        handleDelete: HandleDeleteType
+    }){
     const [accountInfo, setAccountInfo] = useState({
         'username': username,
         'role': role,
@@ -50,7 +59,7 @@ export default function AccountPreviewItem({username, role}: {username: string, 
                     ? <button className="bg-orange-300 p-1 my-1" onClick={() => setEditMode(false)}>Ok</button>
                     : <button className="bg-orange-300 p-1 my-1" onClick={() => {setEditMode(true)}}>Update</button>
                 }
-                <button className="bg-red-500 p-1">Delete</button>
+                <button className="bg-red-500 p-1" onClick={() => handleDelete(username)}>Delete</button>
             </div>
         </div>
         </>
