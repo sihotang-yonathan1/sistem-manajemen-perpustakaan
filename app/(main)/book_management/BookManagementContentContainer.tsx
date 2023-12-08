@@ -1,10 +1,10 @@
 import BookPreview from "../dashboard/component/BookPreview";
 
 export default function BookManagementContentContainer({allBooks}: {allBooks: {
-    id: number;
-    title: string | null;
-    description: string | null;
-}[]}){
+        id: number;
+        title: string | null;
+        description: string | null;
+    }[]}){
     return (
         <div>
             <div className="flex overflow-x-auto">
