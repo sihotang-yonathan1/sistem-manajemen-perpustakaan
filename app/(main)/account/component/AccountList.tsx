@@ -35,7 +35,7 @@ export default function AccountList({users}: {users: {id: number, username: stri
         setAccountList(_ => newAccountList)
     }
 
-    function handleAddAccount(username: string, role: string | null){
+    function handleAddAccount(username: string, password: string, role: string | null){
         // console.log(username)
         // console.log(role)
         let newAccountList = [...accountList, {
@@ -43,7 +43,22 @@ export default function AccountList({users}: {users: {id: number, username: stri
             username: username,
             role: role
         }]
+
+        // send data
+        const addAccountFunction = async () => {
+            await fetch(`http://localhost:3000/api/v1/account`, {
+                method: "POST",
+                credentials: "include",
+                body: JSON.stringify({
+                    'username': username,
+                    'password': password,
+                    'role': role
+                })
+            })
+        }
+
         setAccountList(newAccountList)
+        addAccountFunction()
     }
 
     useEffect(() => {

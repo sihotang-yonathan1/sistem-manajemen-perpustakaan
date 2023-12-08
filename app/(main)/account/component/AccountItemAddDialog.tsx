@@ -1,7 +1,7 @@
 "use client"
 import React, { Dispatch, SetStateAction, useState } from "react";
 
-export default function AccountItemAddDialog({setModalOpen, handleAddAccount}: {setModalOpen: (value: boolean)=>void, handleAddAccount: (username: string, role: string | null) => void}){
+export default function AccountItemAddDialog({setModalOpen, handleAddAccount}: {setModalOpen: (value: boolean)=>void, handleAddAccount: (username: string, password: string, role: string | null) => void}){
     const [tempInfo, setTempInfo] = useState({
         'username': '',
         'password': '',
@@ -68,7 +68,7 @@ export default function AccountItemAddDialog({setModalOpen, handleAddAccount}: {
                         </div>
                     </div>
                     <div className="flex justify-between">
-                        <button className="m-2 bg-sky-300 p-2 rounded" onClick={e => handleAddAccount(tempInfo.username, tempInfo.role)}>Add</button>
+                        <button className="m-2 bg-sky-300 p-2 rounded" onClick={e => handleAddAccount(tempInfo.username, tempInfo.password, tempInfo.role)}>Add</button>
                         <button className="m-2 bg-red-500 p-2 rounded" onClick={e => handleOpenDialog(false)}>Cancel</button>
                     </div>
                 </div>

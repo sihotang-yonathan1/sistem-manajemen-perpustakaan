@@ -3,7 +3,7 @@
 import { useState } from "react"
 import AccountItemAddDialog from "./AccountItemAddDialog"
 
-export default function AccountBottomContainer({handleAddAccount}: {handleAddAccount: (username: string, role: string | null) => void}){
+export default function AccountBottomContainer({handleAddAccount}: {handleAddAccount: (username: string, password:string, role: string | null) => void}){
     const [isModalOpen, setModalOpen] = useState(false)
 
     function handleModalOpen(value: boolean){
