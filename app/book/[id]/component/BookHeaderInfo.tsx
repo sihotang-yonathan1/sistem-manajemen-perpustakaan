@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import PinjamButton from "./PinjamButton";
+import { useRouter } from "next/navigation";
 
 type BookInfoType = {
     title: string | null;
@@ -36,12 +37,29 @@ export default function BookHeaderInfo({bookInfo, userInfo, bookInfoByUserId}: {
     })
 
     const [isEditMode, setEditMode] = useState(false)
+    const router = useRouter()
 
     function handleInputElement(event: React.ChangeEvent<HTMLInputElement>){
         setTempBookInfo(prev => ({
             ...prev,
             [event.target.name]: event.target.value
         }))
+    }
+
+    function handleUpdate(){
+        const updateFunction = async () => {
+            await fetch(`http://localhost:3000/api/v1/book`, {
+                method: "PATCH",
+                credentials: "include",
+                body: JSON.stringify({
+                    'book_id': bookInfo?.id,
+                    'title': tempBookInfo.title,
+                    'description': tempBookInfo.description
+                })
+            })
+        }
+        updateFunction()
+        router.refresh()
     }
 
     return (
@@ -87,7 +105,12 @@ export default function BookHeaderInfo({bookInfo, userInfo, bookInfoByUserId}: {
                     && <div className="mx-2">
                             <button 
                                 className="bg-green-200 p-2 mt-2"
-                                onClick={() => isEditMode ? setEditMode(false): setEditMode(true)}
+                                onClick={isEditMode 
+                                    ? () => {
+                                        handleUpdate()
+                                        setEditMode(false)
+                                    }
+                                    : () => setEditMode(true)}
                             >{isEditMode ? 'Ok': 'Edit'}</button>
                         </div>
                 }
