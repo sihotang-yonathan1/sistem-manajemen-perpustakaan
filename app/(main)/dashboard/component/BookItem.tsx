@@ -5,10 +5,9 @@ import BookPreview from "./BookPreview";
 export default function BookItem({peminjaman_id, title, description, book_id}: {peminjaman_id: number, title: string, description?: string | null, book_id: number}){
     function handlePengembalian(){
         const pengembalianFunction = async () => {
-            const response = await fetch(`http://localhost:3000/api/v1/pengembalian`, {
-                method: "POST",
+            const response = await fetch(`http://localhost:3000/api/v1/peminjaman`, {
+                method: "DELETE",
                 body: JSON.stringify({
-                    'tanggal_pengembalian': new Date().toISOString(),
                     'pinjaman_id': peminjaman_id
                 })
             })
