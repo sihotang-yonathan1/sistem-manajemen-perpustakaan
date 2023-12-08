@@ -31,8 +31,22 @@ export default function AccountList({users}: {users: {id: number, username: stri
             username: string, 
             role: string | null
         }[] = []
-        newAccountList = tempList.filter(value => value.username != username)
+        newAccountList = tempList.filter(value => value.username !== username)
+        
+        const deleteAccount = async () => {
+            await fetch (`http://localhost:3000/api/v1/account`, {
+                method: "DELETE",
+                credentials: "include",
+                body: JSON.stringify({
+                    'username': username
+                })
+            })
+        }
+
+        deleteAccount()
         setAccountList(_ => newAccountList)
+        
+
     }
 
     function handleAddAccount(username: string, password: string, role: string | null){
