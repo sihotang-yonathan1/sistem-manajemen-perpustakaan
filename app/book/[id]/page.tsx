@@ -1,4 +1,4 @@
-import { getBookInfo } from "@/app/api/v1/book/book"
+import { getBookInfo, getBookInfoByUserId } from "@/app/api/v1/book/book"
 import PinjamButton from "./component/PinjamButton"
 import { cookies } from "next/headers"
 import { getSession } from "@/app/api/v1/session/session"
@@ -9,6 +9,9 @@ export default async function IndividualBookPage({params}: {params: {id: number}
     const sessionId = cookies().get('X-SESSION-ID')?.value
     const sessionData = await getSession(Number(sessionId))
     const userInfo = await getAccountInfoByUsername(sessionData?.username as string)
+    const bookInfoByUserId = await getBookInfoByUserId(bookInfo?.id ?? 0, userInfo[0].id)
+    
+    console.log(bookInfoByUserId)
     return (
         <div className="m-2 py-2">
             <div className="flex">
@@ -19,7 +22,15 @@ export default async function IndividualBookPage({params}: {params: {id: number}
                     <p className="font-semibold text-lg">{bookInfo?.title}</p>
                     <p>{bookInfo?.description}</p>
                     <div>
-                        <PinjamButton bookId={Number(bookInfo?.id)} userId={Number(userInfo[0].id)} />
+                        <PinjamButton 
+                            bookId={Number(bookInfo?.id)} 
+                            userId={Number(userInfo[0].id)} 
+                            isPinjam={(
+                                bookInfoByUserId?.peminjaman.length !== undefined 
+                                    ? bookInfoByUserId?.peminjaman.length > 0 
+                                    : false) 
+                                ?? false} 
+                            />
                     </div>
                 </div>
             </div>

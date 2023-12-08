@@ -67,6 +67,26 @@ export async function getBookInfo(book_id: number){
     return data
 }
 
+export async function getBookInfoByUserId(book_id: number, user_id: number){
+    let data = await prisma.book.findFirst({
+        select: {
+            id: true,
+            title: true,
+            description: true,
+            peminjaman: {
+                select: {
+                    id: true
+                },
+                where: {
+                    account_id: user_id
+                }
+            }
+        }, 
+
+    })
+    return data
+}
+
 export async function getAllBook(){
     let data = await prisma.book.findMany({
         select: {
