@@ -35,6 +35,7 @@ export default async function UserBookPage(){
                 <p className="font-bold">My Book</p>
             </div>
             <div className="m-2 p-1">
+                { result.length > 0 &&
                 <BookSection title="Buku dipinjam">
                     {
                         result.map((value, index) => (
@@ -49,6 +50,7 @@ export default async function UserBookPage(){
                         ))
                     }
                 </BookSection>
+                }
             </div>
             <div className="fixed bottom-0 right-0 m-2 bg-sky-400 rounded-full px-4 py-2">
                 <button>+</button>
