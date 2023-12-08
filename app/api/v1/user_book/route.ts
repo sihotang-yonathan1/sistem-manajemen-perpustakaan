@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { deleteUserBook, getUserBooks } from "./user_book";
+import { addUserBook, deleteUserBook, getUserBooks } from "./user_book";
 
 export async function GET(request: NextRequest){
     const url_query = request.nextUrl.searchParams
@@ -13,6 +13,15 @@ export async function GET(request: NextRequest){
     }), {
         status: 400
     })
+}
+
+export async function POST(request: NextRequest){
+    const request_json = await request.json()
+    let response = await addUserBook(
+        request_json['book_id'],
+        request_json['user_id']
+    )
+    return new NextResponse(JSON.stringify(response))
 }
 
 export async function DELETE(request: NextRequest){
