@@ -4,7 +4,13 @@ import { cookies } from "next/headers"
 import { getAccountInfoByUsername } from "../api/v1/account/account"
 
 
-const sidebar_menu = [
+type SidebarMenuItemType = {
+    name: string,
+    url_path: string,
+    isAdminPrivilegeRequired: boolean
+}
+
+const sidebar_menu: SidebarMenuItemType[] = [
     {
         name: 'dashboard',
         url_path: '/dashboard',
@@ -16,6 +22,10 @@ const sidebar_menu = [
     }, {
         name: 'Account',
         url_path: '/account',
+        isAdminPrivilegeRequired: true
+    }, {
+        name: 'Book Management',
+        url_path: '/book_management',
         isAdminPrivilegeRequired: true
     }
 ]
