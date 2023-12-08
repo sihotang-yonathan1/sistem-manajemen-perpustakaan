@@ -1,8 +1,11 @@
 'use client'
 
+import { useRouter } from "next/navigation";
 import BookPreview from "./BookPreview";
 
 export default function BookItem({peminjaman_id, title, description, book_id}: {peminjaman_id: number, title: string, description?: string | null, book_id: number}){
+    const router = useRouter()
+
     function handlePengembalian(){
         const pengembalianFunction = async () => {
             const response = await fetch(`http://localhost:3000/api/v1/peminjaman`, {
@@ -16,6 +19,7 @@ export default function BookItem({peminjaman_id, title, description, book_id}: {
             }
         }
         pengembalianFunction()
+        router.refresh()
     }   
     
     return (
