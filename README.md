@@ -11,6 +11,9 @@ Aplikasi ini dibuat dengan beberapa tech stack seperti:
 ## Instalasi
 Untuk dapat menggunakan aplikasi ini ada beberapa tahap yang perlu dilakukan
 
+### Persiapan
+Pastikan anda sudah menginstal nodejs, DBMS (Seperti mariadb)
+
 ### 1. Download atau clone repository ini  
 Jika anda menggunakan git, anda dapat mengetikkan perintah ini pada terminal atau command prompt
 ```shell
