@@ -1,11 +1,15 @@
 'use client'
 
+import { useRouter } from "next/navigation";
+
+
+
 export default function PinjamButton({bookId, userId, isPinjam}: {bookId: number, userId: number, isPinjam: boolean}){
+    const router = useRouter()
     console.log(`isPInjam value: ${isPinjam}`)
     let date = new Date();
     
     function handlePinjam(){
-        
         const pinjamFunction = async () => {
             await fetch(`http://localhost:3000/api/v1/peminjaman`, {
                 method: "POST",
@@ -17,6 +21,8 @@ export default function PinjamButton({bookId, userId, isPinjam}: {bookId: number
                     'user_id': userId
                 })
             })
+            router.refresh()
+            
         }
         pinjamFunction()
     }
@@ -50,6 +56,7 @@ export default function PinjamButton({bookId, userId, isPinjam}: {bookId: number
                     }
                 }
             }
+            router.refresh()
         }
         pengembalianFunction()
     }
