@@ -3,6 +3,7 @@ import PinjamButton from "./component/PinjamButton"
 import { cookies } from "next/headers"
 import { getSession } from "@/app/api/v1/session/session"
 import { getAccountInfoByUsername } from "@/app/api/v1/account/account"
+import BookHeaderInfo from "./component/BookHeaderInfo"
 
 export default async function IndividualBookPage({params}: {params: {id: number}}){
     const bookInfo = await getBookInfo(Number(params.id))
@@ -18,21 +19,7 @@ export default async function IndividualBookPage({params}: {params: {id: number}
                 <div className="aspect-square bg-slate-200 p-5 mx-3 flex justify-center items-center">
                     <p>Image Here</p>
                 </div>
-                <div className="flex flex-col">
-                    <p className="font-semibold text-lg">{bookInfo?.title}</p>
-                    <p>{bookInfo?.description}</p>
-                    <div>
-                        <PinjamButton 
-                            bookId={Number(bookInfo?.id)} 
-                            userId={Number(userInfo[0].id)} 
-                            isPinjam={(
-                                bookInfoByUserId?.peminjaman.length !== undefined 
-                                    ? bookInfoByUserId?.peminjaman.length > 0 
-                                    : false) 
-                                ?? false} 
-                            />
-                    </div>
-                </div>
+                <BookHeaderInfo bookInfo={bookInfo} bookInfoByUserId={bookInfoByUserId} userInfo={userInfo} />
             </div>
             <div className="my-2 mx-3">
                 <p>Book Volume</p>
