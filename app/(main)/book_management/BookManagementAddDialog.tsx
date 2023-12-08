@@ -1,6 +1,7 @@
 "use client"
 
-import { useState } from "react"
+import { useRouter } from "next/navigation"
+import { useEffect, useState } from "react"
 
 type TempBookInfoType = {
     'title': string,
@@ -13,12 +14,39 @@ export default function BookManagementAddDialog({handleModalOpen}: {handleModalO
         description: null
     })
 
+    // TODO: use more elegant solution without 
+    // full rerender using router.refresh()
+    const router = useRouter()
+
     function handleInputElement(event: React.ChangeEvent<HTMLInputElement>){
         setTempBookInfo(prev => ({
             ...prev,
             [event.target.name]: event.target.value
         }))
     }
+
+    function handleAddBook(){
+        const addBookFunction = async () => {
+            // set new data in book table
+            await fetch(`http://localhost:3000/api/v1/book`, {
+                method: "POST",
+                credentials: "include",
+                body: JSON.stringify({
+                    'title': tempBookInfo.title,
+                    'description': tempBookInfo.description
+                })
+            })
+
+            // TODO: set data in user_book table
+            
+        }
+        addBookFunction()
+        router.refresh()
+    }
+
+    useEffect(() => {
+        setTempBookInfo(tempBookInfo)
+    }, [tempBookInfo])
 
     return (
         <div className="absolute top-1/4 left-1/4 right-1/4 flex justify-center bg-orange-300">
@@ -44,7 +72,8 @@ export default function BookManagementAddDialog({handleModalOpen}: {handleModalO
                 </div>
                 <div className="flex justify-around w-full">
                     <button className="p-2 bg-sky-400" onClick={
-                        event => {
+                        _ => {
+                            handleAddBook()
                             handleModalOpen(false)
                         }
                     }>Add</button>
