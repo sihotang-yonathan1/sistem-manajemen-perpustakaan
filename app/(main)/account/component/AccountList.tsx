@@ -38,17 +38,18 @@ export default function AccountList({users}: {users: {id: number, username: stri
     function handleAddAccount(username: string, role: string | null){
         // console.log(username)
         // console.log(role)
-        accountList.push({
-            id: accountList.length,
+        let newAccountList = [...accountList, {
+            id: accountList.length + 1,
             username: username,
             role: role
-        })
-        setAccountList(accountList)
+        }]
+        setAccountList(newAccountList)
     }
 
     useEffect(() => {
         console.log(accountList)
         console.log("Account list changed")
+        setAccountList(accountList)
     }, [accountList])
 
     return (
