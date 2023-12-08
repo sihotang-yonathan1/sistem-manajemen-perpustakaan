@@ -1,4 +1,5 @@
 import BookPreview from "../dashboard/component/BookPreview";
+import BookManagementPreview from "./component/BookManagementPreview";
 
 export default function BookManagementContentContainer({allBooks}: {allBooks: {
         id: number;
@@ -10,7 +11,7 @@ export default function BookManagementContentContainer({allBooks}: {allBooks: {
             <div className="flex overflow-x-auto">
                 {allBooks.map((value, index)=> (
                     <div key={index} className="flex flex-col flex-grow flex-shrink basis-0">
-                        <BookPreview title={value.title ?? ""} description={value.description} bookId={value.id}/>
+                        <BookManagementPreview title={value.title ?? ""} description={value.description} bookId={value.id}/>
                     </div>
                 ))}
             </div>
