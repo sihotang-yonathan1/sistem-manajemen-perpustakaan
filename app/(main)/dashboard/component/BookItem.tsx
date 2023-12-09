@@ -27,7 +27,10 @@ export default function BookItem({peminjaman_id, title, description, book_id}: {
             <BookPreview 
                 title={title} 
                 description={description} 
-                bookId={book_id} />
+                bookId={book_id}
+                imageUrl={"Hello"} 
+                author={"hello"}
+                />
             <div className="flex justify-center">
                 <button 
                     className="bg-green-400 p-1 mb-2"
