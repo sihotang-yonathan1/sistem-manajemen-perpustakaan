@@ -18,14 +18,17 @@ export default function BookPreview({
                     />
                 </div>
                 }
-                <div className="flex justify-center">
+                <div className="flex justify-center my-2">
                     <h3 className="font-semibold">{title}</h3>
                 </div>
-                <div className="flex justify-center items-center">
+                <div className="flex justify-center flex-1">
                     <p className="text-sm">{description}</p>
                 </div>
-                <div className="flex justify-center">
-                    {author && <p>Author: {author}</p>}
+                <div className="flex items-end">
+                    {author && <p className="text-sm">
+                        <span className="font-bold">Author:</span> 
+                        <p>{author}</p>
+                    </p>}
                 </div>
             </div>
         </Link>
