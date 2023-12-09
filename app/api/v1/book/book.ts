@@ -92,7 +92,9 @@ export async function getAllBook(){
         select: {
             id: true,
             title: true,
-            description: true
+            description: true,
+            author: true,
+            imageUrl: true
         }
     })
     return data

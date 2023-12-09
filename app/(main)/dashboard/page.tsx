@@ -30,8 +30,8 @@ export default async function DashboardPage(){
                             title={value.title ?? ""} 
                             description={value.description} 
                             bookId={value.id}
-                            author={"hello"}
-                            imageUrl={"https://www.mitrawacanamedia.com/image/cache/catalog/data/buku_teknik_komputer/pengantar_sistem_informasi-800x800.jpg"}/>
+                            author={value.author}
+                            imageUrl={value.imageUrl}/>
                     </div>
                 ))}
             </div>

@@ -21,6 +21,8 @@ model book {
   id          Int          @id @default(autoincrement())
   title       String?      @db.Text
   description String?      @db.Text
+  author      String?      @db.VarChar(255)
+  imageUrl    String?      @db.Text
   peminjaman  peminjaman[]
   user_book   user_book[]
 }
