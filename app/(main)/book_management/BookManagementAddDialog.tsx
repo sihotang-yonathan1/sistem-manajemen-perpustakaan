@@ -42,12 +42,11 @@ export default function BookManagementAddDialog({handleModalOpen}: {handleModalO
                     'imageUrl': tempBookInfo.imageUrl
                 })
             })
-
+            router.refresh()
             // TODO: set data in user_book table
             
         }
         addBookFunction()
-        router.refresh()
     }
 
     useEffect(() => {
