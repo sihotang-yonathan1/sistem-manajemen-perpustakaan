@@ -11,8 +11,8 @@ export default function BookPreview({
             <div className="bg-sky-300 m-2 p-2 h-full flex flex-col">
                 {imageUrl !== null && <div className="flex justify-center">
                     <Image 
-                        src={'https://www.mitrawacanamedia.com/image/cache/catalog/data/buku_teknik_komputer/pengantar_sistem_informasi-800x800.jpg'} 
-                        height={100} 
+                        src={imageUrl} 
+                        height={300} 
                         width={100} 
                         alt="book image"
                     />

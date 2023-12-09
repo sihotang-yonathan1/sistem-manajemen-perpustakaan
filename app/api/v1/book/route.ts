@@ -3,7 +3,8 @@ import { addBook, deleteBook, getBookInfo, updateBook } from "./book";
 
 export async function POST(request: NextRequest){
     let request_json = await request.json()
-    let data = await addBook(request_json['title'], request_json?.description ?? null)
+    const {title, description, author, imageUrl} = request_json
+    let data = await addBook(title, description ?? null, author ?? null, imageUrl ?? null)
     return new NextResponse(JSON.stringify(data))
 }
 
@@ -15,8 +16,9 @@ export async function DELETE(request: NextRequest){
 
 export async function PATCH(request: NextRequest){
     let request_json = await request.json()
+    const {book_id, title, description, author, imageUrl} = request_json
     let response = await updateBook(
-        request_json['book_id'], request_json['title'], request_json['description'])
+        book_id, title, description, author, imageUrl)
     return new NextResponse(JSON.stringify(response))
 }
 
