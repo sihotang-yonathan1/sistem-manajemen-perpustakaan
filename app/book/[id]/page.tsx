@@ -4,6 +4,7 @@ import { cookies } from "next/headers"
 import { getSession } from "@/app/api/v1/session/session"
 import { getAccountInfoByUsername } from "@/app/api/v1/account/account"
 import BookHeaderInfo from "./component/BookHeaderInfo"
+import Image from "next/image"
 
 export default async function IndividualBookPage({params}: {params: {id: number}}){
     const bookInfo = await getBookInfo(Number(params.id))
@@ -16,17 +17,15 @@ export default async function IndividualBookPage({params}: {params: {id: number}
     return (
         <div className="m-2 py-2">
             <div className="flex">
-                <div className="aspect-square bg-slate-200 p-5 mx-3 flex justify-center items-center">
-                    <p>Image Here</p>
+                { bookInfo !== null
+                ? <div className="mx-2">
+                    <Image src={bookInfo?.imageUrl ?? ""} width={200} height={300} alt="Book image"/>
+                    </div>
+                : <div className="aspect-square bg-slate-500 p-5 mx-3 flex justify-center items-center h-[300px] w-[200px]">
+                    <p>Hello World</p>
                 </div>
-                <BookHeaderInfo bookInfo={bookInfo} bookInfoByUserId={bookInfoByUserId} userInfo={userInfo} />
-            </div>
-            <div className="my-2 mx-3">
-                <p>Book Volume</p>
-                <div>
-                    <p>Volume 1</p>
-                    <p>Volume 2</p>
-                </div>
+                }
+               <BookHeaderInfo bookInfo={bookInfo} bookInfoByUserId={bookInfoByUserId} userInfo={userInfo} />
             </div>
         </div>
     )
