@@ -5,13 +5,17 @@ import { useEffect, useState } from "react"
 
 type TempBookInfoType = {
     'title': string,
-    'description': string | null
+    'description': string | null,
+    'author': string | null,
+    'imageUrl': string | null
 }
 
 export default function BookManagementAddDialog({handleModalOpen}: {handleModalOpen: (isOpen: boolean) => void}){
     const [tempBookInfo, setTempBookInfo] = useState<TempBookInfoType>({
         title: '',
-        description: null
+        description: null,
+        author: null,
+        imageUrl: null
     })
 
     // TODO: use more elegant solution without 
@@ -33,7 +37,9 @@ export default function BookManagementAddDialog({handleModalOpen}: {handleModalO
                 credentials: "include",
                 body: JSON.stringify({
                     'title': tempBookInfo.title,
-                    'description': tempBookInfo.description
+                    'description': tempBookInfo.description,
+                    'author': tempBookInfo.author,
+                    'imageUrl': tempBookInfo.imageUrl
                 })
             })
 
@@ -67,6 +73,24 @@ export default function BookManagementAddDialog({handleModalOpen}: {handleModalO
                         name="description" 
                         id="book_description" 
                         placeholder="Book Description"
+                        className="p-2"
+                        onChange={handleInputElement}/>
+                </div>
+                <div className="mb-2">
+                    <input 
+                        type="text" 
+                        name="author" 
+                        id="book_author" 
+                        placeholder="Book Author"
+                        className="p-2"
+                        onChange={handleInputElement}/>
+                </div>
+                <div className="mb-2">
+                    <input 
+                        type="url" 
+                        name="imageUrl" 
+                        id="book_image_url" 
+                        placeholder="Book Image Url"
                         className="p-2"
                         onChange={handleInputElement}/>
                 </div>

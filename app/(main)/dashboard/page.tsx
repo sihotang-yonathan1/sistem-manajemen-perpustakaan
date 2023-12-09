@@ -23,7 +23,7 @@ export default async function DashboardPage(){
                     className="flex flex-col px-1 justify-center bg-sky-400"
                     >Ok</button>
             </div>
-            <div className="flex overflow-x-auto">
+            <div className="grid grid-cols-3 overflow-y-auto max-h-[83vh]">
                 {allBooks.map((value, index)=> (
                     <div key={index} className="flex flex-col flex-grow flex-shrink basis-0">
                         <BookPreview 

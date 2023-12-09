@@ -9,7 +9,9 @@ export default async function BookManagementPage(){
             <div className="flex bg-slate-400 p-2 justify-center">
                 <p className="font-bold">Book Management</p>
             </div>
-            <BookManagementContentContainer allBooks={allBooks}/>
+            <div className="max-h-[90vh] overflow-y-auto">
+                <BookManagementContentContainer allBooks={allBooks}/>
+            </div>
             <BookManagementBottomContainer />
         </div>
     )

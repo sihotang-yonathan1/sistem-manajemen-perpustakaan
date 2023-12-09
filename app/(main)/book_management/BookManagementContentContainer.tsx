@@ -9,8 +9,8 @@ export default function BookManagementContentContainer({allBooks}: {allBooks: {
     imageUrl: string | null;
 }[]}){
     return (
-        <div>
-            <div className="flex overflow-x-auto">
+        <div className="overflow-y-auto">
+            <div className="grid grid-cols-3 overflow-y-auto">
                 {allBooks.map((value, index)=> (
                     <div key={index} className="flex flex-col flex-grow flex-shrink basis-0">
                         <BookManagementPreview 
