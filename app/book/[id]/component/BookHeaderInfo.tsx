@@ -8,6 +8,8 @@ type BookInfoType = {
     title: string | null;
     id: number;
     description: string | null;
+    author: string | null;
+    imageUrl: string | null;
 } | null
 
 type UserInfoType = [] | {
@@ -27,13 +29,17 @@ type BookInfoByUserId = {
 
 type TempBookInfotype = {
     title: string,
-    description: string | null
+    description: string | null,
+    author: string | null,
+    imageUrl: string | null
 }
 
 export default function BookHeaderInfo({bookInfo, userInfo, bookInfoByUserId}: {bookInfo: BookInfoType, userInfo: UserInfoType, bookInfoByUserId: BookInfoByUserId}){
     const [tempBookInfo, setTempBookInfo] = useState<TempBookInfotype>({
         title: bookInfo?.title ?? "",
-        description: bookInfo?.description ?? null
+        description: bookInfo?.description ?? null,
+        author: bookInfo?.author ?? null,
+        imageUrl: bookInfo?.imageUrl ?? null
     })
 
     const [isEditMode, setEditMode] = useState(false)
@@ -54,7 +60,9 @@ export default function BookHeaderInfo({bookInfo, userInfo, bookInfoByUserId}: {
                 body: JSON.stringify({
                     'book_id': bookInfo?.id,
                     'title': tempBookInfo.title,
-                    'description': tempBookInfo.description
+                    'description': tempBookInfo.description,
+                    'author': tempBookInfo.author,
+                    'imageUrl': tempBookInfo.imageUrl
                 })
             })
         }
@@ -76,17 +84,32 @@ export default function BookHeaderInfo({bookInfo, userInfo, bookInfoByUserId}: {
                     className="font-semibold text-lg"
                 >{tempBookInfo.title}</p>
             }
-            {   isEditMode
+            <div className="flex-col flex">
+                {   isEditMode
+                    ? <input 
+                        type="text" 
+                        name="description" 
+                        id="description" 
+                        value={tempBookInfo.description ?? ""}
+                        className="my-1 border p-2"
+                        placeholder="Book description"
+                        onChange={handleInputElement}/>
+                    : <p>{tempBookInfo.description}</p>
+                }
+            </div>
+            <div className="flex flex-col">{
+                isEditMode
                 ? <input 
                     type="text" 
-                    name="description" 
-                    id="description" 
-                    value={tempBookInfo.description ?? ""}
+                    name="author" 
+                    id="author" 
+                    placeholder="Book Author" 
                     className="my-1 border p-2"
-                    placeholder="Book description"
-                    onChange={handleInputElement}/>
-                : <p>{tempBookInfo.description}</p>
+                    onChange={handleInputElement}
+                    value={tempBookInfo.author ?? ""}/>
+                : <p>Author: {tempBookInfo.author}</p>
             }
+            </div>
 
             <div className="flex items-center">
                 <div className="mx-2">
