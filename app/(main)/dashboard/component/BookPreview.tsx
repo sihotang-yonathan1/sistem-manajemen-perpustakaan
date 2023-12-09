@@ -25,10 +25,10 @@ export default function BookPreview({
                     <p className="text-sm">{description}</p>
                 </div>
                 <div className="flex items-end">
-                    {author && <p className="text-sm">
+                    {author && <div className="text-sm">
                         <span className="font-bold">Author:</span> 
                         <p>{author}</p>
-                    </p>}
+                    </div>}
                 </div>
             </div>
         </Link>

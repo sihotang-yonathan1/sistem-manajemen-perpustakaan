@@ -15,6 +15,8 @@ type PinjamanBukuUsername = {
     book_id: number,
     title: string,
     description?: string,
+    author: string | null,
+    imageUrl: string | null,
     username: string,
     tanggal_pinjam: Date
 }
@@ -45,6 +47,8 @@ export default async function UserBookPage(){
                                     description={value.description}
                                     book_id={value.book_id}
                                     peminjaman_id={value.id}
+                                    author={value.author}
+                                    imageUrl={value.imageUrl}
                                 />
                             </div>
                         ))

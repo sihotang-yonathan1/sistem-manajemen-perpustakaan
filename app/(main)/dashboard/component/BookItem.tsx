@@ -3,7 +3,8 @@
 import { useRouter } from "next/navigation";
 import BookPreview from "./BookPreview";
 
-export default function BookItem({peminjaman_id, title, description, book_id}: {peminjaman_id: number, title: string, description?: string | null, book_id: number}){
+export default function BookItem({peminjaman_id, title, description, book_id, author, imageUrl}: 
+    {peminjaman_id: number, title: string, description?: string | null, book_id: number, author: string | null, imageUrl: string | null}){
     const router = useRouter()
 
     function handlePengembalian(){
@@ -28,8 +29,8 @@ export default function BookItem({peminjaman_id, title, description, book_id}: {
                 title={title} 
                 description={description} 
                 bookId={book_id}
-                imageUrl={"Hello"} 
-                author={"hello"}
+                imageUrl={imageUrl} 
+                author={author}
                 />
             <div className="flex justify-center">
                 <button 

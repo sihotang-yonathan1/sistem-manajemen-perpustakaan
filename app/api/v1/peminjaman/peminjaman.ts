@@ -60,6 +60,8 @@ type PinjamanBukuUsername = {
     book_id: number,
     title: string,
     description?: string,
+    author: string | null,
+    imageUrl: string | null,
     username: string,
     tanggal_pinjam: Date
 }
@@ -70,7 +72,9 @@ export async function getPinjamanBukuByUsername(username: string){
             peminjaman.id, 
             peminjaman.book_id, 
             book.title, 
-            book.description, 
+            book.description,
+            book.author,
+            book.imageUrl, 
             account.username, 
             peminjaman.tanggal_pinjam 
         FROM peminjaman 
