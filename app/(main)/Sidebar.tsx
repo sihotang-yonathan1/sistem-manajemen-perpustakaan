@@ -50,7 +50,7 @@ export default async function Sidebar({sessionId}: {sessionId: number}){
                 }
                 else {
                     return (
-                        <Link href={value.url_path} key={value.url_path} className="bg-white mb-2 p-1">
+                        <Link href={value.url_path} key={value.url_path} className="bg-white mb-2 p-1 hover:bg-gray-300">
                             <button className="capitalize">{value.name}</button>
                         </Link>
                     )
