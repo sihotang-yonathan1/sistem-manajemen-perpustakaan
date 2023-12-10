@@ -2,6 +2,7 @@ import { cookies } from "next/headers";
 import BookPreview from "./component/BookPreview";
 import { redirect } from "next/navigation";
 import { getAllBook } from "@/app/api/v1/book/book";
+import BookSearch from "./component/BookSearch";
 
 export default async function DashboardPage(){
     const sessionId = cookies().get('X-SESSION-ID')?.value
@@ -13,15 +14,7 @@ export default async function DashboardPage(){
                 <p className="font-bold">Dashboard</p>
             </div>
             <div className="flex justify-center m-1">
-                <input 
-                    type="text" 
-                    name="search_input" 
-                    className="border rounded px-2 mx-2 py-1"
-                    id="search_input" 
-                    placeholder="Search book here"/>
-                <button 
-                    className="flex flex-col px-1 justify-center bg-sky-400"
-                    >Ok</button>
+                <BookSearch allBooks={allBooks}/>
             </div>
             <div className="grid grid-cols-3 overflow-y-auto max-h-[83vh]">
                 {allBooks.map((value, index)=> (
