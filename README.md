@@ -12,7 +12,7 @@ Aplikasi ini dibuat dengan beberapa tech stack seperti:
 Untuk dapat menggunakan aplikasi ini ada beberapa tahap yang perlu dilakukan
 
 ### Persiapan
-Pastikan anda sudah menginstal nodejs, DBMS (Seperti mariadb)
+Pastikan anda sudah menginstal nodejs, DBMS (Seperti mariadb). Untuk mempermudah, silakan untuk memasukkan path NodeJS ke PATH agar command `npm` dapat diakses melalui direktori manapun
 
 ### 1. Download atau clone repository ini  
 Jika anda menggunakan git, anda dapat mengetikkan perintah ini pada terminal atau command prompt
@@ -23,6 +23,8 @@ git clone "https://github.com/sihotang-yonathan1/sistem-manajemen-perpustakaan.g
 # pindah ke direktori program
 cd sistem-manajemen-perpustakaan
 ```
+
+atau sebagai alternatifnya, anda dapat mendownload bentuk arsip (zip) dan kemudia ekstrak dan masuk ke direktori `sistem-manajemen-perpustakaan`
 ### 2. Install dependency yang dibutuhkan
 Pastikan anda sudah menginstal nodejs
 ```shell
@@ -48,6 +50,12 @@ Setelah menyalakan dan mengoneksikan database, pastikan anda telah membuat tabel
 ```
 npx prisma db push
 ```
+
+Untuk menampilkan data, anda dapat memasukkan data-data dahulu ke tabel yang sudah dibuat pada DBMS anda. Untuk login, anda dapat memasukkan data ke tabel `account` dengan perintah seperti berikut:
+```sql
+INSERT INTO account (username, password, role) VALUES (admin, admin, admin)
+```
+Pastikan memasukkan role sebagai admin untuk memiliki hak akses penuh
 
 ### 4. Nyalakan web server
 Nyalakan web servernya dengan cara mengetikkan
