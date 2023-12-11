@@ -30,7 +30,8 @@ Pastikan anda sudah menginstal nodejs
 ```shell
 npm install
 ```
-### 3. Nyalakan database dan configurasi di file `.env`  
+### 3. Nyalakan database dan configurasi di file `.env` 
+Buatlah file baru (jika belum ada) yang bername `.env` tepat didalam direktori `sistem-manajemen-perpustakaan`.
 Template configurasinya sebagai berikut
 ```ini
 DATABASE_URL="db_type://username:password@host:post/db_name"
@@ -45,6 +46,7 @@ Bagian password dapat dihilangkan jika tidak memiliki password
 DATABASE_URL="mysql://joko@localhost:3306/mydb"
 ```
 
+#### Secara Manual
 Setelah menyalakan dan mengoneksikan database, pastikan anda telah membuat tabel-tabel yang dibutuhkan. Jika ingin lebih mudah, anda dapat memakai schema prisma untuk memasukkan tabel.
 
 ```
@@ -56,6 +58,14 @@ Untuk menampilkan data, anda dapat memasukkan data-data dahulu ke tabel yang sud
 INSERT INTO account (username, password, role) VALUES (admin, admin, admin)
 ```
 Pastikan memasukkan role sebagai admin untuk memiliki hak akses penuh
+
+#### Menggunakan database tes
+Anda dapat menggunakan database yang digunakan untuk uji coba dengan cara mengimport file sql yang ada pada `test_db/sistem_manajemen_perpustakaan.sql`. 
+Untuk mengimpor file tersebut, masukkan command berikut di command prompt (Windows) atau terminal (Linux, MacOS)
+```shell
+## untuk mysql atau mariadb
+mysql -u username -p nama_database < path/ke/sql/sistem_manajemen_perpustakaan.sql
+```
 
 ### 4. Nyalakan web server
 Nyalakan web servernya dengan cara mengetikkan
