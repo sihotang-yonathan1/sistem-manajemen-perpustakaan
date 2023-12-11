@@ -12,7 +12,8 @@ Aplikasi ini dibuat dengan beberapa tech stack seperti:
 Untuk dapat menggunakan aplikasi ini ada beberapa tahap yang perlu dilakukan
 
 ### Persiapan
-Pastikan anda sudah menginstal nodejs, DBMS (Seperti mariadb). Untuk mempermudah, silakan untuk memasukkan path NodeJS ke PATH agar command `npm` dapat diakses melalui direktori manapun
+Pastikan anda sudah menginstal nodejs, DBMS (Seperti mariadb). Untuk mempermudah, silakan untuk memasukkan path NodeJS ke PATH agar command `npm` dapat diakses melalui direktori manapun.  
+Anda dapat mendownload NodeJS melalui link berikut https://nodejs.org/en, gunakan versi LTS dan sesuaikan dengan sistem operasi yang anda gunakan
 
 ### 1. Download atau clone repository ini  
 Jika anda menggunakan git, anda dapat mengetikkan perintah ini pada terminal atau command prompt
@@ -24,7 +25,7 @@ git clone "https://github.com/sihotang-yonathan1/sistem-manajemen-perpustakaan.g
 cd sistem-manajemen-perpustakaan
 ```
 
-atau sebagai alternatifnya, anda dapat mendownload bentuk arsip (zip) dan kemudia ekstrak dan masuk ke direktori `sistem-manajemen-perpustakaan`
+atau sebagai alternatifnya, anda dapat mendownload bentuk arsip (zip) dan kemudian ekstrak dan masuk ke direktori `sistem-manajemen-perpustakaan`
 ### 2. Install dependency yang dibutuhkan
 Pastikan anda sudah menginstal nodejs
 ```shell
